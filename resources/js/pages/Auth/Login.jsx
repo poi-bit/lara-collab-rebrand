@@ -13,7 +13,8 @@ import {
   TextInput,
   Title,
   Image,
-  Container
+  Container,
+  useComputedColorScheme,
 } from "@mantine/core";
 import { useForm } from "laravel-precognition-react-inertia";
 import { useEffect, useRef, useState } from "react";
@@ -23,6 +24,7 @@ import classes from "./css/Login.module.css";
 const Login = ({ notify }) => {
   const [socialLoginPending, setSocialLoginPending] = useState(false);
   const passwordRef = useRef(null);
+  const computedColorScheme = useComputedColorScheme();
 
   const form = useForm("post", route("auth.login.attempt"), {
     email: route().params?.email || "",
@@ -38,10 +40,16 @@ const Login = ({ notify }) => {
     form.submit({ preserveScroll: true });
   };
 
+  // Change logo colors based on site theme
+    const logoSrc =
+    computedColorScheme === "dark"
+      ? "assets/redbean-tagline/rb-tg-svg-red.svg"
+      : "assets/redbean-tagline/rb-tg-svg-red-navy.svg";
+
   return (
     <>
       <Container p={32}>
-        <Image h={80} fit="contain" src="assets/redbean-tagline/rb-tg-svg-red.svg" />
+        <Image h={80} fit="contain" src={logoSrc} />
       </Container>
             
       <Title ta="center" className={classes.title}>
