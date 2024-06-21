@@ -12,6 +12,8 @@ import {
   Text,
   TextInput,
   Title,
+  Image,
+  Container
 } from "@mantine/core";
 import { useForm } from "laravel-precognition-react-inertia";
 import { useEffect, useRef, useState } from "react";
@@ -38,14 +40,21 @@ const Login = ({ notify }) => {
 
   return (
     <>
+      <Container p={32}>
+        <Image h={80} fit="contain" src="assets/redbean-tagline/rb-tg-svg-red.svg" />
+      </Container>
+            
       <Title ta="center" className={classes.title}>
         Welcome back!
       </Title>
+
+
       <Text c="dimmed" size="sm" ta="center" mt={5}>
         You may login to your account below
       </Text>
 
       <LoginNotification notify={notify} />
+
 
       <form onSubmit={submit}>
         <ContainerBox shadow="md" p={30} mt={30} radius="md">
